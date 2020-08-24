@@ -21,6 +21,7 @@
       background: #ff2e63;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       border-radius: 6px;
+
       i {
         svg {
           path {
@@ -29,51 +30,29 @@
         }
       }
     }
+  }
 
+  .list__list-icon {
+    display: flex;
     i {
-      margin-right: 6px;
-      display: flex;
-
       svg {
-        width: 24px;
-        height: 24px;
-        path {
-          fill: #ff2e63;
-        }
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .list__add-icon {
+    display: flex;
+    opacity: .4;
+    transition: opacity .3s ease-in-out;
+    i {
+      svg {
+        margin-right: 12px;
       }
     }
 
-    .badge {
-      position: relative;
-      width: 10px;
-      height: 10px;
-      border-radius: 50px;
-      left: 0;
-      top: 0;
-
-      &--green {
-        background-color: #A5D6A7;
-      }
-
-      &--cyan {
-        background-color: #80DEEA;
-      }
-
-      &--pink {
-        background-color: #F48FB1;
-      }
-
-      &--yellow {
-        background-color: #FFF59D;
-      }
-
-      &--gray {
-        background-color: #EEEEEE;
-      }
-
-      &--orange {
-        background-color: #FFCC80;
-      }
+    &:hover {
+      opacity: 1;
     }
   }
 }

@@ -1,2 +1,14 @@
 # react-todo-app
-ToDo App using ReactJS, React Router, SCSS, Axios and json-server
+
+**ToDo App** using:
+
+ - **ReactJS (useState, useReducer, useEffect)**
+ - **React Router**
+ - **Axios**
+ - **json-server**
+ - **HTML5**
+ - **SCSS**
+
+# Screenshots
+
+
