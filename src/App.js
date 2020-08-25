@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.scss';
 import List from './components/List/List'
 import AddList from "./components/AddList/AddList";
+import AllTasksList from "./components/AllTasksList/AllTasksList";
 
 import db from './assets/db.json'
 
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="todo">
       <div className="todo__sidebar">
-        <List
+        <AllTasksList
           items={[
             {
               className: 'list__list-icon',
@@ -23,29 +24,10 @@ function App() {
             }
           ]}/>
         <List
-          items={[
-            {
-              name: 'Покупки',
-              color: 'green',
-              isActive: true,
-            },
-            {
-              name: 'Фронтенд',
-              color: 'cyan',
-            },
-            {
-              name: 'Фильмы и сериалы',
-              color: 'pink',
-            },
-            {
-              name: 'Книги',
-              color: 'purple',
-            },
-            {
-              name: 'Личное',
-              color: 'lime',
-            }
-          ]}
+          items={db.lists.map(item => {
+            item.color = db.colors;
+            return item;
+          })}
           isRemovable
         />
         <AddList colors={db.colors} />

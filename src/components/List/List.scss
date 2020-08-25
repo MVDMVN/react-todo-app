@@ -3,19 +3,26 @@
   flex-wrap: wrap;
   align-items: center;
 
-  &:first-child {
-    margin-bottom: 24px;
-  }
-
   &__item {
     display: flex;
     align-items: center;
     width: 100%;
     color: #eeeeee;
-    padding: 12px 20px 12px 12px;
+    padding: 8px 20px 8px 12px;
     cursor: pointer;
     font-size: 14px;
+    border-radius: 6px;
+    transition: .3s ease-in-out;
+    margin-bottom: 6px;
 
+
+    &:last-child {
+      margin-bottom: 24px;
+    }
+
+    &:hover {
+      background: lighten(#ff2e63, 3%);
+    }
 
     &.active {
       background: #ff2e63;
@@ -29,7 +36,12 @@
           }
         }
       }
+
     }
+  }
+
+  &__item-all {
+    margin-bottom: 0;
   }
 
   .list__list-icon {
@@ -37,22 +49,19 @@
     i {
       svg {
         margin-right: 6px;
+        padding-top: 5px;
       }
     }
   }
 
   .list__add-icon {
     display: flex;
-    opacity: .4;
-    transition: opacity .3s ease-in-out;
     i {
       svg {
         margin-right: 12px;
+        padding-top: 5px;
       }
-    }
-
-    &:hover {
-      opacity: 1;
     }
   }
 }
+
