@@ -6,8 +6,10 @@
  - **React Router**
  - **Axios**
  - **json-server**
+ - **react-toastify**
  - **HTML5**
  - **SCSS**
+
 
 # Screenshots
 
