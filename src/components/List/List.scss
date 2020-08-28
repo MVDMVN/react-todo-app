@@ -1,4 +1,7 @@
 .list {
+
+  $self: &;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -15,6 +18,23 @@
     transition: .3s ease-in-out;
     margin-bottom: 6px;
 
+    &:hover #{$self}__remove-icon {
+      opacity: 0.4;
+    }
+
+    #{$self}__remove-icon {
+      opacity: 0;
+      transition: .3s;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+    }
+
+    span {
+      flex: 1;
+    }
 
     &:last-child {
       margin-bottom: 24px;

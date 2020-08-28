@@ -12,18 +12,19 @@ body {
 }
 
 .todo {
+  display: flex;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 750px;
+  width: 900px;
   background-color: #222831;
   box-shadow: 0px 11px 40px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 
   &__sidebar {
     background-color: darken(#2d4059, 3%);
-    width: 200px;
+    width: 250px;
     min-height: 530px;
     padding: 40px 24px;
     border-radius: 10px 0 0 10px;

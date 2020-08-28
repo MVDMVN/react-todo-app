@@ -49,11 +49,15 @@ function App() {
             ]}/>
           <List
             items={lists}
+            onRemove={(item) => {
+              alert(item);
+            }}
             isRemovable
           />
           <AddList onAdd={onAddList} colors={db.colors} db={db}/>
         </div>
         <div className="todo__tasks">
+          <h2>Фронтенд</h2>
         </div>
       </div>
       <ToastContainer/>
