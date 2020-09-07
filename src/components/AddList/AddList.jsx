@@ -44,42 +44,65 @@ const addList = () => {
         onClick={() => setPopupVisible(!isPopupVisible)}
         items={[
           {
-            className: 'list__add-icon',
-            icon:
-              <svg width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 1V11" stroke="#ff2e63" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M1 6H11" stroke="#ff2e63" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>,
-            name: 'Добавить список',
-          }
+            className: "list__add-icon",
+            icon: (
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 1V11"
+                  stroke="#ff2e63"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M1 6H11"
+                  stroke="#ff2e63"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            ),
+            name: "Добавить список",
+          },
         ]}
       />
       {isPopupVisible && (
         <div className="add-list__popup">
           <img
             onClick={onClose}
-            className='add-list__close-icon'
+            className="add-list__close-icon"
             src={closeSvg}
-            alt="Close Icon"/>
+            alt="Close Icon"
+          />
           <input
             value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}
             className="field"
             type="text"
             placeholder="Название списка"
           />
           <div className="add-list__popup-colors">
-            {colors.map((color) =>
+            {colors.map((color) => (
               <Badge
-                onClick={() => {selectColor(color.id)}}
+                onClick={() => {
+                  selectColor(color.id);
+                }}
                 key={color.id}
                 color={color.name}
-                className={selectedColor === color.id && 'active'}
-              />) }
+                className={selectedColor === color.id && "active"}
+              />
+            ))}
           </div>
-          <button
-            onClick={addList}
-            className="button ">Добавить</button>
+          <button onClick={addList} className="button ">
+            Добавить
+          </button>
         </div>
       )}
     </div>

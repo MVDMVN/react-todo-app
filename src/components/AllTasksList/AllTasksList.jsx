@@ -8,10 +8,16 @@ function AllTasksList({items, isRemovable, onClick}) {
   return (
     <ul onClick={onClick} className="list">
       {items.map((item, index) => (
-        <li key={index} className={classNames('list__item', 'list__item-all', item.className, {'active': item.isActive})}>
-          <i>
-            {item.icon ? item.icon : <Badge color={item.color} />}
-          </i>
+        <li
+          key={index}
+          className={classNames(
+            "list__item",
+            "list__item-all",
+            item.className,
+            { active: item.isActive }
+          )}
+        >
+          <i>{item.icon ? item.icon : <Badge color={item.color} />}</i>
           <span>{item.name}</span>
         </li>
       ))}
