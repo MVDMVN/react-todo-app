@@ -1,16 +1,22 @@
-import React from 'react';
-import classNames from 'classnames';
-import Badge from '../Badge/Badge';
-import removeSvg from '../../assets/img/remove.svg'
-import './List.scss'
+import React from "react";
+import "./List.scss";
+import classNames from "classnames";
+import axios from "axios";
 
-const List = ({items, isRemovable, onClick, onRemove}) => {
+import Badge from "../Badge/Badge";
+
+import removeSvg from "../../assets/img/remove.svg";
+
+
+const List = ({ items, isRemovable, onClick, onRemove }) => {
 
   const removeList = (item) => {
-    if(window.confirm("Вы действительно хотите удалить этот список? " + item.name)) {
-      onRemove(item);
+    if (window.confirm("Вы действительно хотите удалить этот список? " + item.name)) {
+      axios.delete('http://localhost:3001/lists/' + item.id).then(() => {
+        onRemove(item.id);
+      });
     }
-  }
+  };
 
   return (
     <ul onClick={onClick} className="list">
@@ -19,9 +25,8 @@ const List = ({items, isRemovable, onClick, onRemove}) => {
           key={index}
           className={classNames("list__item", item.className, {
             active: item.isActive,
-          })}
-        >
-          <i>{item.icon ? item.icon : <Badge color={item.color} />}</i>
+          })}>
+          <i>{item.icon ? item.icon : <Badge color={item.color.name} />}</i>
           <span>{item.name}</span>
           {isRemovable && (
             <img
@@ -35,6 +40,6 @@ const List = ({items, isRemovable, onClick, onRemove}) => {
       ))}
     </ul>
   );
-}
+};
 
 export default List;

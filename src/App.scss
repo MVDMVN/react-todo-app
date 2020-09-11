@@ -81,4 +81,10 @@ body {
       background-color: darken(#ff2e63, 10%);
     }
   }
+
+  &__downloading {
+    color: rgba(238, 238, 238, 0.4);
+    font-size: 16px;
+    margin-left: 15px;
+  }
 }

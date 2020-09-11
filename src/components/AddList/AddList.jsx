@@ -1,17 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './AddList.scss'
+
+import axios from 'axios';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import List from '../List/List';
 import Badge from '../Badge/Badge'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import closeSvg from '../../assets/img/close.svg'
+const AddList = ({ colors, onAdd }) => {
 
-const AddList = ({onAdd, colors, db}) => {
 
-const [isPopupVisible, setPopupVisible] = useState(true);
-const [selectedColor, selectColor] = useState(colors[0].id);
+const [isPopupVisible, setPopupVisible] = useState(false);
+const [selectedColor, selectColor] = useState(3);
+const [isLoading, setIsLoading] = useState(false);
 const [inputValue, setInputValue] = useState('');
+
+
 const notify = () => toast.error("Введите название списка!", {
   position: "top-right",
   autoClose: 5000,
@@ -22,21 +28,39 @@ const notify = () => toast.error("Введите название списка!"
   progress: undefined,
 });
 
+useEffect(() => {
+  if (Array.isArray(colors)) {
+    selectColor(colors[0].id);
+  }
+}, [colors]);
+
 const onClose = () => {
   setPopupVisible(false);
   setInputValue('');
   selectColor(colors[0].id);
-}
+};
 
 const addList = () => {
-  if(!inputValue) {
-    notify();
+  if (!inputValue) {
+    alert('Введите название списка');
     return;
   }
-  const color = colors.filter(c => c.id === selectedColor)[0].name;
-  onAdd({"id": db.lists.length + 1, "name": inputValue, color});
-  onClose();
-}
+  setIsLoading(true);
+  axios
+    .post('http://localhost:3001/lists', {
+      name: inputValue,
+      colorId: selectedColor
+    })
+    .then(({ data }) => {
+      const color = colors.filter(c => c.id === selectedColor)[0].name;
+      const listObj = { ...data, color: { name: color } };
+      onAdd(listObj);
+      onClose();
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
+};
 
   return (
     <div className="add-list">
@@ -51,8 +75,7 @@ const addList = () => {
                 height="14"
                 viewBox="0 0 12 12"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M6 1V11"
                   stroke="#ff2e63"
@@ -101,7 +124,7 @@ const addList = () => {
             ))}
           </div>
           <button onClick={addList} className="button ">
-            Добавить
+            {isLoading ? "Добавление..." : "Добавить"}
           </button>
         </div>
       )}
