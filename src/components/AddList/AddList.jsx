@@ -1,66 +1,51 @@
-import React, {useState, useEffect} from 'react';
-import './AddList.scss'
+import React, { useState, useEffect } from "react";
+import "./AddList.scss";
 
-import axios from 'axios';
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
-import List from '../List/List';
-import Badge from '../Badge/Badge'
+import List from "../List/List";
+import Badge from "../Badge/Badge";
 
-import closeSvg from '../../assets/img/close.svg'
+import closeSvg from "../../assets/img/close.svg";
 const AddList = ({ colors, onAdd }) => {
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const [selectedColor, selectColor] = useState(3);
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
+  useEffect(() => {
+    if (Array.isArray(colors)) {
+      selectColor(colors[0].id);
+    }
+  }, [colors]);
 
-const [isPopupVisible, setPopupVisible] = useState(false);
-const [selectedColor, selectColor] = useState(3);
-const [isLoading, setIsLoading] = useState(false);
-const [inputValue, setInputValue] = useState('');
-
-
-const notify = () => toast.error("Введите название списка!", {
-  position: "top-right",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-});
-
-useEffect(() => {
-  if (Array.isArray(colors)) {
+  const onClose = () => {
+    setPopupVisible(false);
+    setInputValue("");
     selectColor(colors[0].id);
-  }
-}, [colors]);
+  };
 
-const onClose = () => {
-  setPopupVisible(false);
-  setInputValue('');
-  selectColor(colors[0].id);
-};
-
-const addList = () => {
-  if (!inputValue) {
-    alert('Введите название списка');
-    return;
-  }
-  setIsLoading(true);
-  axios
-    .post('http://localhost:3001/lists', {
-      name: inputValue,
-      colorId: selectedColor
-    })
-    .then(({ data }) => {
-      const color = colors.filter(c => c.id === selectedColor)[0].name;
-      const listObj = { ...data, color: { name: color } };
-      onAdd(listObj);
-      onClose();
-    })
-    .finally(() => {
-      setIsLoading(false);
-    });
-};
+  const addList = () => {
+    if (!inputValue) {
+      alert("Введите название списка");
+      return;
+    }
+    setIsLoading(true);
+    axios
+      .post("http://localhost:3001/lists", {
+        name: inputValue,
+        colorId: selectedColor,
+      })
+      .then(({ data }) => {
+        const color = colors.filter((c) => c.id === selectedColor)[0].name;
+        const listObj = { ...data, color: { name: color } };
+        onAdd(listObj);
+        onClose();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div className="add-list">

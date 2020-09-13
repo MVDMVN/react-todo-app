@@ -1,50 +1,49 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
-import axios from 'axios';
+import axios from "axios";
 
-import { List, AddList, Tasks, AllTasksList} from './components';
+import { List, AddList, Tasks, AllTasksList } from "./components";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
- 
 
 function App() {
-const [lists, setLists] = useState(null);
-const [colors, setColors] = useState(null);
-  
+  const [lists, setLists] = useState(null);
+  const [colors, setColors] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
 
-useEffect(() => {
-  axios
-    .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
-    .then(({ data }) => {
-      setLists(data);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
+      .then(({ data }) => {
+        setLists(data);
+      });
+    axios.get("http://localhost:3001/colors").then(({ data }) => {
+      setColors(data);
     });
-  axios.get("http://localhost:3001/colors").then(({ data }) => {
-    setColors(data);
-  });
-}, []);
+  }, []);
 
-const succesNotify = (name) =>
-  toast.success("Список " + name + " добавлен", {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+  const succesNotify = (name) =>
+    toast.success("Список " + name + " добавлен", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const deleteNotify = (name) =>
-  toast.error("Список " + name + " удалён", {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+    toast.error("Список " + name + " удалён", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const onAddList = (listItem) => {
     const newList = [...lists, listItem];
@@ -88,6 +87,10 @@ const succesNotify = (name) =>
                 setLists(newLists);
                 deleteNotify(deletedItem.name);
               }}
+              onClickItem={(item) => {
+                setActiveItem(item);
+              }}
+              activeItem={activeItem}
               isRemovable
             />
           ) : (
@@ -95,7 +98,9 @@ const succesNotify = (name) =>
           )}
           <AddList onAdd={onAddList} colors={colors} />
         </div>
-        <div className="todo__tasks">{lists && <Tasks list={lists[1]} />}</div>
+        <div className="todo__tasks">
+          {lists && activeItem && <Tasks list={activeItem} />}
+        </div>
       </div>
       <ToastContainer />
     </div>

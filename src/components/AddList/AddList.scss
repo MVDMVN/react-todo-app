@@ -3,19 +3,19 @@
 
   .list {
     &__item {
-      color: rgba(238,238,238, 0.4);
+      color: rgba(238, 238, 238, 0.4);
     }
 
     &__item:hover {
       background-color: initial;
-      color: rgba(238,238,238, 1);
+      color: rgba(238, 238, 238, 1);
     }
   }
 
   &__popup {
     width: 250px;
     height: 150px;
-    background-color: #344A67;
+    background-color: #344a67;
     box-shadow: 1px 1px 10px #393e46;
     border-radius: 10px;
     position: absolute;
@@ -39,7 +39,7 @@
       height: 16px;
       margin-right: 0;
       cursor: pointer;
-      transition: .3s ease-in-out;
+      transition: 0.3s ease-in-out;
 
       &.active {
         transform: scale(1.5);
