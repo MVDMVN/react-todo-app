@@ -41,7 +41,7 @@
     {
       "id": 2,
       "listId": 2,
-      "text": "Изучить паттерны проектирования",
+      "text": "Изучить паттерны проектирования1234",
       "completed": false
     },
     {
@@ -54,7 +54,7 @@
       "id": 4,
       "listId": 2,
       "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
+      "completed": true
     },
     {
       "listId": 2,

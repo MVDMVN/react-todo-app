@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import addIcon from "../../assets/img/add-icon.svg";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
@@ -31,7 +31,7 @@ function AddTaskForm({ list, onAddTask }) {
         toggleFormVisible();
         taskAddSuccess();
       })
-      .catch(() => {
+      .catch((e) => {
         taskAddError();
       })
       .finally(() => {
