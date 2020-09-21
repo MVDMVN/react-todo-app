@@ -2,9 +2,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
 body {
@@ -36,26 +36,27 @@ body {
   }
 
   .field {
-    background: #344A67;
-    border: 1px solid #9E9E9E;
+    background: #344a67;
+    border: 1px solid #9e9e9e;
     box-sizing: border-box;
     border-radius: 4px;
     padding: 6px 12px;
     width: 100%;
-    transition: .3s ease-in-out;
-    color: #9E9E9E;
+    transition: 0.3s ease-in-out;
+    color: #9e9e9e;
+    font-size: 14px;
 
     &::placeholder {
-      color: #9E9E9E;
-      transition: .3s ease-in-out;
+      color: #9e9e9e;
+      transition: 0.3s ease-in-out;
     }
 
     &:focus {
-      border-color: #EEEEEE;
+      border-color: #eeeeee;
       outline: none;
-      color: #EEEEEE;
+      color: #eeeeee;
       &::placeholder {
-        color: #EEEEEE;
+        color: #eeeeee;
       }
     }
   }
@@ -63,13 +64,13 @@ body {
   .button {
     background-color: #ff2e63;
     border-radius: 4px;
-    color: #EEEEEE;
+    color: #eeeeee;
     padding: 10px 12px;
     text-transform: uppercase;
     font-size: 12px;
     border: none;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
 
     &:focus {
       outline: none;
@@ -77,8 +78,21 @@ body {
 
     &:hover {
       outline: none;
-      box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.12), 0px 9px 46px rgba(0, 0, 0, 0.06), 0px 24px 38px rgba(0, 0, 0, 0.07);
-      background-color: darken(#ff2e63, 10%);
+      box-shadow: 0px 11px 15px rgba(0, 0, 0, 0.12),
+        0px 9px 46px rgba(0, 0, 0, 0.06), 0px 24px 38px rgba(0, 0, 0, 0.07);
+      background-color: darken(#ff2e63, 5%);
+    }
+
+    &:active {
+      background-color: darken(#ff2e63, 15%);
+    }
+
+    &--grey {
+      background-color: #444444;
+
+      &:hover {
+        background-color: darken(#444444, 4%);
+      }
     }
   }
 

@@ -3,7 +3,7 @@
   "bracketSpacing": true, //пробелы после и перед скобками
   "jsxBracketSameLine: false, //закрывающая > на новой строке в jsx
   "arrowParens": true, //скобки для одного аргумента в стрелочной функции
-  "printWidth": 120, // длина строки - 120
+  "printWidth": 80, // длина строки - 80
   "tabWidth": 2, // длина "таба" - 2 пробела
   "singleQuote": true, // использовать одинарные кавычки - да!
   "trailingComma": "es5", // запятая в последней строке - да

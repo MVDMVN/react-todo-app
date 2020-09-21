@@ -51,6 +51,27 @@ function App() {
     succesNotify(listItem.name);
   };
 
+  const onAddTask = (listId, newTaskItem) => {
+    const newList = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = [...item.tasks, newTaskItem];
+      }
+      return item;
+    });
+
+    setLists(newList);
+  };
+
+  const onEditListTitle = (id, title) => {
+    const newList = lists.map((item) => {
+      if (item.id === id) {
+        item.name = title;
+      }
+      return item;
+    });
+    setLists(newList);
+  };
+
   return (
     <div>
       <div className="todo">
@@ -99,7 +120,13 @@ function App() {
           <AddList onAdd={onAddList} colors={colors} />
         </div>
         <div className="todo__tasks">
-          {lists && activeItem && <Tasks list={activeItem} />}
+          {lists && activeItem && (
+            <Tasks
+              list={activeItem}
+              onEditTitle={onEditListTitle}
+              onAddTask={onAddTask}
+            />
+          )}
         </div>
       </div>
       <ToastContainer />

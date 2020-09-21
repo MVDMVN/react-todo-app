@@ -10,21 +10,30 @@
     color: #64c4ed;
 
     &:hover {
-      img {
+      .tasks-title__edit {
         opacity: 0.2;
+      }
+    }
+
+    .tasks-title__edit {
+      opacity: 0;
+      transition: 0.3s;
+      cursor: pointer;
+      margin-left: 16px;
+
+      &:hover {
+        opacity: 0.9;
       }
     }
   }
 
-  img {
-    opacity: 0;
-    transition: .3s;
-    cursor: pointer;
-    margin-left: 16px;
-
-    &:hover {
-      opacity: 0.9;
-    }
+  &__empty-title {
+    font-size: 32px;
+    line-height: 39px;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #eeeeee;
+    text-align: center;
   }
 
   .checkbox {
@@ -96,6 +105,49 @@
       width: 100%;
       color: #eeeeee;
       margin-left: 16px;
+    }
+  }
+
+  &__form {
+    &-block {
+      .field {
+        margin-bottom: 12px;
+        &::placeholder {
+          color: #eeeeee;
+          transition: 0.3s ease-in-out;
+        }
+      }
+
+      .button {
+        margin-right: 10px;
+        &:disabled {
+          background-color: lighten(#444444, 10%);
+        }
+      }
+    }
+
+    &-new {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0.2;
+      transition: 0.3s;
+      margin-bottom: 20px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      span {
+        font-size: 18px;
+        color: #eee;
+        margin-left: 16px;
+      }
     }
   }
 }

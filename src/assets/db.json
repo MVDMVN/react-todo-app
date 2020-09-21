@@ -2,7 +2,7 @@
   "lists": [
     {
       "id": 1,
-      "name": "Покупки",
+      "name": "Покупки и товары",
       "colorId": 5
     },
     {
@@ -55,6 +55,42 @@
       "listId": 2,
       "text": "Redux (redux-observable, redux-saga)",
       "completed": false
+    },
+    {
+      "listId": 2,
+      "text": "Повторить что-то",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "listId": 2,
+      "text": "3131",
+      "completed": false,
+      "id": 6
+    },
+    {
+      "listId": 2,
+      "text": "3131",
+      "completed": false,
+      "id": 7
+    },
+    {
+      "listId": 2,
+      "text": "Новая задача",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "listId": 2,
+      "text": "Task",
+      "completed": false,
+      "id": 9
+    },
+    {
+      "listId": 2,
+      "text": "Task 2",
+      "completed": false,
+      "id": 10
     }
   ],
   "colors": [
