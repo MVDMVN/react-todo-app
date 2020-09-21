@@ -48,7 +48,7 @@ const Tasks = ({
       </Link>
       <div className="tasks__list">
         {!withoutEmpty && list.tasks && !list.tasks.length && (
-          <h2>Задачи отсутствуют</h2>
+          <h2 className="tasks__empty-title">Задачи отсутствуют</h2>
         )}
         {list.tasks &&
           list.tasks.map((task) => (

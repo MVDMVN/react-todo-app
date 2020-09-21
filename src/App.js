@@ -1,19 +1,43 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import axios from "axios";
-import { Route, useHistory } from "react-router-dom";
 
 import { List, AddList, Tasks, AllTasksList } from "./components";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function App() {
-  let history = useHistory();
+import { Route, useHistory } from "react-router-dom";
 
+function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
+  const [isAllTasksActive, setIsAllTasksActive] = useState(false);
+
+  let history = useHistory();
+
+  const setActiveTask = (list) => {
+    history.push(`/lists/${list.id}`);
+    const listId = history.location.pathname.split("lists/")[1];
+    if (lists) {
+      const list = lists.find((list) => list.id === Number(listId));
+      setActiveItem(list);
+    }
+  };
+
+  const showAllTasks = () => {
+    history.location.pathname = "/";
+    setIsAllTasksActive(true);
+  };
+
+  // useEffect(() => {
+  //   const listId = history.location.pathname.split("lists/")[1];
+  //   if (lists) {
+  //     const list = lists.find((list) => list.id === Number(listId));
+  //     setActiveItem(list);
+  //   }
+  // }, [lists, history.location.pathname]);
 
   useEffect(() => {
     axios
@@ -37,8 +61,8 @@ function App() {
       progress: undefined,
     });
 
-  const deleteNotify = (name) =>
-    toast.error("Список " + name + " удалён", {
+  const succesDeleteNotify = (name) =>
+    toast.success("Список удалён", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -102,6 +126,7 @@ function App() {
         return item;
       });
       setLists(newList);
+      succesDeleteNotify();
       axios.delete("http://localhost:3001/tasks/" + taskId).catch(() => {
         alert("Не удалось удалить задачу");
       });
@@ -140,26 +165,17 @@ function App() {
     setLists(newList);
   };
 
-  useEffect(() => {
-    const listId = history.location.pathname.split("lists/")[1];
-    if (lists) {
-      const list = lists.find((list) => list.id === Number(listId));
-      setActiveItem(list);
-    }
-  }, [lists, history.location.pathname]);
-
   return (
     <div>
       <div className="todo">
         <div className="todo__sidebar">
           <AllTasksList
-            onClickItem={(list) => {
-              history.push(`/`);
+            onClickItem={() => {
+              showAllTasks();
             }}
             items={[
               {
-                className: "list__list-icon",
-                active: history.location.pathname === "/",
+                active: isAllTasksActive,
                 icon: (
                   <svg
                     width="24"
@@ -182,14 +198,11 @@ function App() {
               items={lists}
               onRemove={(id) => {
                 const newLists = lists.filter((item) => item.id !== id);
-                const deletedItem = lists.find(
-                  (currentValue) => currentValue.id === id
-                );
                 setLists(newLists);
-                deleteNotify(deletedItem.name);
               }}
               onClickItem={(list) => {
-                history.push(`/lists/${list.id}`);
+                setActiveTask(list);
+                // setActiveItem(list);
               }}
               activeItem={activeItem}
               isRemovable
@@ -215,7 +228,7 @@ function App() {
                 />
               ))}
           </Route>
-          <Route path="/lists/:id">
+          <Route path="/lists/:id?">
             {lists && activeItem && (
               <Tasks
                 list={activeItem}

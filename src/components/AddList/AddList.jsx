@@ -7,6 +7,7 @@ import List from "../List/List";
 import Badge from "../Badge/Badge";
 
 import closeSvg from "../../assets/img/close.svg";
+
 const AddList = ({ colors, onAdd }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [selectedColor, selectColor] = useState(3);
@@ -37,7 +38,7 @@ const AddList = ({ colors, onAdd }) => {
         colorId: selectedColor,
       })
       .then(({ data }) => {
-        const color = colors.filter((c) => c.id === selectedColor)[0].name;
+        const color = colors.filter((c) => c.id === selectedColor)[0];
         const listObj = { ...data, color, tasks: [] };
         onAdd(listObj);
         onClose();

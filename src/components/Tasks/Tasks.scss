@@ -36,12 +36,12 @@
   }
 
   &__empty-title {
-    font-size: 32px;
-    line-height: 39px;
+    font-size: 24px;
+    line-height: 30px;
     font-family: Montserrat;
     font-weight: bold;
     color: #eeeeee;
-    text-align: center;
+    margin-bottom: 24px;
   }
 
   .checkbox {
@@ -107,6 +107,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+
     &:hover &-actions {
       opacity: 1;
     }
