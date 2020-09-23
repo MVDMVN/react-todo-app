@@ -59,20 +59,8 @@
     {
       "listId": 2,
       "text": "Повторить что-то",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "listId": 2,
-      "text": "3131",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "listId": 2,
-      "text": "Новая задача",
       "completed": true,
-      "id": 8
+      "id": 5
     }
   ],
   "colors": [

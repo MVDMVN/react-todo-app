@@ -19,25 +19,13 @@ function App() {
 
   const setActiveTask = (list) => {
     history.push(`/lists/${list.id}`);
-    const listId = history.location.pathname.split("lists/")[1];
-    if (lists) {
-      const list = lists.find((list) => list.id === Number(listId));
-      setActiveItem(list);
-    }
+    setActiveItem(list);
   };
 
   const showAllTasks = () => {
     history.location.pathname = "/";
     setIsAllTasksActive(true);
   };
-
-  // useEffect(() => {
-  //   const listId = history.location.pathname.split("lists/")[1];
-  //   if (lists) {
-  //     const list = lists.find((list) => list.id === Number(listId));
-  //     setActiveItem(list);
-  //   }
-  // }, [lists, history.location.pathname]);
 
   useEffect(() => {
     axios
@@ -202,7 +190,6 @@ function App() {
               }}
               onClickItem={(list) => {
                 setActiveTask(list);
-                // setActiveItem(list);
               }}
               activeItem={activeItem}
               isRemovable
