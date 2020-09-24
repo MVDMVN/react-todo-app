@@ -2,15 +2,15 @@
 
 **ToDo App** using:
 
- - **ReactJS (useState, useReducer, useEffect)**
- - **React Router**
- - **Axios**
- - **json-server**
- - **react-toastify**
- - **HTML5**
- - **SCSS**
-
+- **ReactJS (useState, useEffect)**
+- **React Router**
+- **classnames**
+- **Axios**
+- **json-server**
+- **react-toastify**
+- **HTML5**
+- **SCSS**
 
 # Screenshots
 
-
+![alt text](https://hkar.ru/12UAG)
